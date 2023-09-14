@@ -14,13 +14,15 @@ protocol HomeViewDelegate: AnyObject {
 }
 
 final class HomeView: UIView {
-    // MARK: - Constants
+    // MARK: - Properties
     weak var delegate: HomeViewDelegate?
     var mainImageUrl: URL? {
         didSet {
             configureMainImageView(url: mainImageUrl)
         }
     }
+    
+    // MARK: - Constants
     private let todoListButtonTitle = "할일 확인하기"
     private let completionButtonTitle = "완료한일 보기"
     private let profileButtonTitle = "프로필 보기"

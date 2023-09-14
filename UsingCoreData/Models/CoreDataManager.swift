@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class CoreDataManager {
+final class CoreDataManager {
     static let shared = CoreDataManager()
     
     private let entityName = "Task"
@@ -36,7 +36,6 @@ class CoreDataManager {
         let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
         if let fetchedTasks = try! context.fetch(request) as? [Task] {
             tasks = fetchedTasks
-            print(fetchedTasks)
         }
         return tasks
     }

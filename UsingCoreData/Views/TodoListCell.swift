@@ -7,10 +7,11 @@
 
 import UIKit
 
-class TodoListCell: UITableViewCell {
-    
+final class TodoListCell: UITableViewCell {
+    // MARK: - Static Properties
     static let identifier = "TodoListCell"
 
+    // MARK: - Components
     let mainLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,6 +20,7 @@ class TodoListCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubViews()
@@ -29,10 +31,12 @@ class TodoListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - addSubViews
     private func addSubViews() {
         contentView.addSubview(mainLabel)
     }
     
+    // MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
             mainLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),

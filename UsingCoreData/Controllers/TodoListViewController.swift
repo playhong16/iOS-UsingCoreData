@@ -7,11 +7,12 @@
 
 import UIKit
 
-class TodoListViewController: UIViewController {
-    
+final class TodoListViewController: UIViewController {
+    // MARK: - Properties
     private let coreDataManager = CoreDataManager.shared
-    let mainView = TodoListView()
+    private let mainView = TodoListView()
 
+    // MARK: - Life Cycle
     override func loadView() {
         self.view = mainView
     }
@@ -27,14 +28,19 @@ class TodoListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
     }
     
+    deinit {
+        print("TodoListView Controller 사라집니다~~")
+    }
+    
+    // MARK: - Setup
     private func setNavigationBarItem() {
         let image = UIImage(systemName: "plus")
         let addButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addButtonTapped))
         navigationController?.navigationBar.tintColor = .systemPink
-//        navigationController?.navigationItem.rightBarButtonItem = addButton
         navigationItem.rightBarButtonItem = addButton
     }
     
+    // MARK: - Show
     private func showAlert() {
         let alert = UIAlertController(title: "할 일 추가하기", message: "새로운 할 일을 입력하세요.", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -50,11 +56,13 @@ class TodoListViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // MARK: - Actions
     @objc func addButtonTapped() {
         showAlert()
     }
 } 
 
+// MARK: - UITableView DataSource
 extension TodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager.getTasks().count
@@ -68,6 +76,7 @@ extension TodoListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableView Delegate
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50

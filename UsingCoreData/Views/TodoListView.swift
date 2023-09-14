@@ -7,14 +7,16 @@
 
 import UIKit
 
-class TodoListView: UIView {
+final class TodoListView: UIView {
     
+    // MARK: - Components
     let tableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
     }()
     
+    // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubViews()
@@ -26,10 +28,12 @@ class TodoListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - addSubViews
     func addSubViews() {
         self.addSubview(tableView)
     }
     
+    // MARK: - Constraints
     func setConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -39,6 +43,7 @@ class TodoListView: UIView {
         ])
     }
     
+    // MARK: - Setup
     func setTableView() {
         tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.identifier)
     }
