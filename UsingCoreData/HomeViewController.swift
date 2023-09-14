@@ -30,8 +30,9 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewDelegate {
     func showTodoListButtonTapped() {
         let moveVC = TodoListViewController()
-        moveVC.modalPresentationStyle = .fullScreen
-        present(moveVC, animated: true)
+        let naviVC = UINavigationController(rootViewController: moveVC)
+        naviVC.modalPresentationStyle = .fullScreen
+        present(naviVC, animated: true)
     }
     
     func showCompletionTodoListButtonTapped() {
