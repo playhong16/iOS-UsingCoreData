@@ -24,9 +24,14 @@ class HomeViewController: UIViewController {
         guard let view = self.view as? HomeView else { return }
         guard let url = URL(string: self.url) else { return }
         view.mainImageView.loadImage(url: url)
+        view.delegate = self
     }
-    
-    
-    
 }
 
+extension HomeViewController: HomeViewDelegete {
+    func showTodoListButtonTapped() {
+        let moveVC = TodoListViewController()
+        moveVC.modalPresentationStyle = .fullScreen
+        present(moveVC, animated: true)
+    }
+}
