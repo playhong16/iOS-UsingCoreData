@@ -18,6 +18,20 @@ class TodoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "TodoList"
+        setNavigationBarItem()
+    }
+    
+    private func setNavigationBarItem() {
+        let image = UIImage(systemName: "plus")
+        let addButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addButtonTapped))
+        navigationController?.navigationBar.tintColor = .systemPink
+//        navigationController?.navigationItem.rightBarButtonItem = addButton
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func addButtonTapped() {
+        print("addButton 눌렀다.")
     }
 } 
 
