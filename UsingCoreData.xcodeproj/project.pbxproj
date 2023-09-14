@@ -19,6 +19,8 @@
 		055A8FE22AB2A983001BDF87 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FE12AB2A983001BDF87 /* TodoListViewController.swift */; };
 		055A8FE42AB2ABC1001BDF87 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FE32AB2ABC1001BDF87 /* UIView+Extension.swift */; };
 		055A8FE62AB2CBCC001BDF87 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FE52AB2CBCC001BDF87 /* TodoListCell.swift */; };
+		055A8FEE2AB2D976001BDF87 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FEC2AB2D976001BDF87 /* Task+CoreDataClass.swift */; };
+		055A8FEF2AB2D976001BDF87 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FED2AB2D976001BDF87 /* Task+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		055A8FE12AB2A983001BDF87 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		055A8FE32AB2ABC1001BDF87 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		055A8FE52AB2CBCC001BDF87 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
+		055A8FEC2AB2D976001BDF87 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		055A8FED2AB2D976001BDF87 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +72,10 @@
 		055A8FC22AB2011A001BDF87 /* UsingCoreData */ = {
 			isa = PBXGroup;
 			children = (
-				055A8FDC2AB207EF001BDF87 /* Extension */,
 				055A8FC32AB2011A001BDF87 /* AppDelegate.swift */,
 				055A8FC52AB2011A001BDF87 /* SceneDelegate.swift */,
+				055A8FDC2AB207EF001BDF87 /* Extension */,
+				055A8FEB2AB2D1D5001BDF87 /* Models */,
 				055A8FDA2AB203EA001BDF87 /* HomeView.swift */,
 				055A8FC72AB2011A001BDF87 /* HomeViewController.swift */,
 				055A8FCF2AB2011C001BDF87 /* Assets.xcassets */,
@@ -91,6 +96,15 @@
 				055A8FE32AB2ABC1001BDF87 /* UIView+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		055A8FEB2AB2D1D5001BDF87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				055A8FEC2AB2D976001BDF87 /* Task+CoreDataClass.swift */,
+				055A8FED2AB2D976001BDF87 /* Task+CoreDataProperties.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +185,9 @@
 				055A8FC62AB2011A001BDF87 /* SceneDelegate.swift in Sources */,
 				055A8FDE2AB207FC001BDF87 /* UIImageView+Extension.swift in Sources */,
 				055A8FE02AB2A84A001BDF87 /* TodoListView.swift in Sources */,
+				055A8FEE2AB2D976001BDF87 /* Task+CoreDataClass.swift in Sources */,
 				055A8FDB2AB203EA001BDF87 /* HomeView.swift in Sources */,
+				055A8FEF2AB2D976001BDF87 /* Task+CoreDataProperties.swift in Sources */,
 				055A8FCE2AB2011A001BDF87 /* UsingCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
