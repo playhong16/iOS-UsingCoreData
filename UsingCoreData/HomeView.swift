@@ -9,16 +9,21 @@ import UIKit
 
 protocol HomeViewDelegate: AnyObject {
     func showTodoListButtonTapped()
+    func showCompletionTodoListButtonTapped()
+    func showProfileButtonTapped()
 }
 
-class HomeView: UIView {
-    
+final class HomeView: UIView {
     // MARK: - Constants
-    let todoListButtonTitle = "할일 확인하기"
-    let completionButtonTitle = "완료한일 보기"
-    let profileButtonTitle = "프로필 보기"
-    
     weak var delegate: HomeViewDelegate?
+    var mainImageUrl: URL? {
+        didSet {
+            configureMainImageView(url: mainImageUrl)
+        }
+    }
+    private let todoListButtonTitle = "할일 확인하기"
+    private let completionButtonTitle = "완료한일 보기"
+    private let profileButtonTitle = "프로필 보기"
     
     // MARK: - Components
     let mainImageView: UIImageView = {
@@ -71,8 +76,12 @@ class HomeView: UIView {
         super.updateConstraints()
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+    }
+    
     // MARK: - addSubViews
-    func addSubviews() {
+    private func addSubviews() {
         self.addSubview(mainImageView)
         self.addSubview(showTodoListButton)
         self.addSubview(showCompletionTodoListButton)
@@ -80,7 +89,7 @@ class HomeView: UIView {
     }
     
     // MARK: - Constraints
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             mainImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
             mainImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -105,8 +114,13 @@ class HomeView: UIView {
     }
     
     // MARK: - Configure
-    func configure() {
+    private func configure() {
         self.backgroundColor = .white
+    }
+    
+    private func configureMainImageView(url: URL?) {
+        guard let imageUrl = url else { return }
+        mainImageView.loadImage(url: imageUrl)
     }
     
     // MARK: - Actions
@@ -115,11 +129,10 @@ class HomeView: UIView {
     }
     
     @objc func showCompletionTodoListButtonTapped() {
-        
+        delegate?.showCompletionTodoListButtonTapped()
     }
     
     @objc func showProfileButtonTapped() {
-        
+        delegate?.showProfileButtonTapped()
     }
-
 }

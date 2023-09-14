@@ -7,24 +7,23 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
-    let url = "https://spartacodingclub.kr/css/images/scc-og.jpg"
+    private let stringUrl = "https://spartacodingclub.kr/css/images/scc-og.jpg"
 
     override func loadView() {
-        self.view = HomeView()
+        let mainView = HomeView()
+        self.view = mainView
+        configureView(mainView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImage()
     }
     
-    func getImage() {
-        guard let view = self.view as? HomeView else { return }
-        guard let url = URL(string: self.url) else { return }
-        view.mainImageView.loadImage(url: url)
+    private func configureView(_ view: HomeView) {
         view.delegate = self
+        view.mainImageUrl = URL(string: stringUrl)
     }
 }
 
@@ -33,5 +32,13 @@ extension HomeViewController: HomeViewDelegate {
         let moveVC = TodoListViewController()
         moveVC.modalPresentationStyle = .fullScreen
         present(moveVC, animated: true)
+    }
+    
+    func showCompletionTodoListButtonTapped() {
+        
+    }
+    
+    func showProfileButtonTapped() {
+        
     }
 }
