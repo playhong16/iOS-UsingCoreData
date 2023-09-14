@@ -19,7 +19,7 @@ class TodoListView: UIView {
         super.init(frame: frame)
         addSubViews()
         setConstraints()
-        self.backgroundColor = .systemMint
+        setTableView()
     }
     
     required init?(coder: NSCoder) {
@@ -37,6 +37,10 @@ class TodoListView: UIView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+    }
+    
+    func setTableView() {
+        tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.identifier)
     }
     
     /*

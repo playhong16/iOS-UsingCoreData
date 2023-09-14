@@ -10,18 +10,21 @@ import UIKit
 class TodoListViewController: UIViewController {
     
     private let coreDataManager = CoreDataManager.shared
+    let mainView = TodoListView()
 
     override func loadView() {
-        let mainView = TodoListView()
         self.view = mainView
-        mainView.tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.identifier)
-        mainView.tableView.dataSource = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "TodoList"
+        mainView.tableView.dataSource = self
+        mainView.tableView.delegate = self
         setNavigationBarItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
     }
     
     private func setNavigationBarItem() {
@@ -32,8 +35,23 @@ class TodoListViewController: UIViewController {
         navigationItem.rightBarButtonItem = addButton
     }
     
+    private func showAlert() {
+        let alert = UIAlertController(title: "할 일 추가하기", message: "새로운 할 일을 입력하세요.", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let add = UIAlertAction(title: "추가", style: .default) { _ in
+            if let text = alert.textFields?[0].text {
+                self.coreDataManager.create(task: text)
+                self.mainView.tableView.reloadData()
+            }
+        }
+        alert.addTextField()
+        alert.addAction(cancel)
+        alert.addAction(add)
+        present(alert, animated: true)
+    }
+    
     @objc func addButtonTapped() {
-        coreDataManager.create()
+        showAlert()
     }
 } 
 
@@ -47,5 +65,11 @@ extension TodoListViewController: UITableViewDataSource {
         let tasks = coreDataManager.getTasks()
         cell.mainLabel.text = tasks[indexPath.row].title
         return cell
+    }
+}
+
+extension TodoListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }

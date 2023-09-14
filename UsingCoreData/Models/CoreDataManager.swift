@@ -17,13 +17,14 @@ class CoreDataManager {
     
     private init() {}
     
-    func create() {
+    func create(task title: String) {
         guard let context = self.context,
               let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { return }
         if let task = NSManagedObject(entity: entity, insertInto: context) as? Task {
-            task.id = "0"
-            task.title = "swift 공부하기"
+            task.id = String(getTasks().count)
+            task.title = title
             task.createDate = Date()
+            task.modifyDate = nil
             task.isCompleted = false
             appDelegate?.saveContext()
         }
@@ -35,6 +36,7 @@ class CoreDataManager {
         let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
         if let fetchedTasks = try! context.fetch(request) as? [Task] {
             tasks = fetchedTasks
+            print(fetchedTasks)
         }
         return tasks
     }
