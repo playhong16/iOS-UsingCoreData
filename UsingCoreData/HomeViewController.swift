@@ -8,14 +8,25 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
     
+    let url = "https://spartacodingclub.kr/css/images/scc-og.jpg"
+
     override func loadView() {
         self.view = HomeView()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getImage()
     }
+    
+    func getImage() {
+        guard let view = self.view as? HomeView else { return }
+        guard let url = URL(string: self.url) else { return }
+        view.mainImageView.loadImage(url: url)
+    }
+    
+    
     
 }
 

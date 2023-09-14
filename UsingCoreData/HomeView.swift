@@ -26,6 +26,7 @@ class HomeView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.todoListButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(showTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -34,6 +35,7 @@ class HomeView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.completionButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(showCompletionTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -42,6 +44,7 @@ class HomeView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.profileButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(showProfileButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -73,8 +76,10 @@ class HomeView: UIView {
     // MARK: - Constraints
     func setConstraints() {
         NSLayoutConstraint.activate([
-            mainImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
-            mainImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            mainImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
+            mainImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            mainImageView.heightAnchor.constraint(equalToConstant: 200),
+            mainImageView.widthAnchor.constraint(equalToConstant: 250)
         ])
         
         NSLayoutConstraint.activate([
@@ -97,4 +102,18 @@ class HomeView: UIView {
     func configure() {
         self.backgroundColor = .white
     }
+    
+    // MARK: - Actions
+    @objc func showTodoListButtonTapped() {
+        
+    }
+    
+    @objc func showCompletionTodoListButtonTapped() {
+        
+    }
+    
+    @objc func showProfileButtonTapped() {
+        
+    }
+
 }
