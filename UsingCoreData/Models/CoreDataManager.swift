@@ -28,5 +28,15 @@ class CoreDataManager {
             appDelegate?.saveContext()
         }
     }
+    
+    func getTasks() -> [Task] {
+        var tasks: [Task] = []
+        guard let context = self.context else { return tasks }
+        let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        if let fetchedTasks = try! context.fetch(request) as? [Task] {
+            tasks = fetchedTasks
+        }
+        return tasks
+    }
 
 }

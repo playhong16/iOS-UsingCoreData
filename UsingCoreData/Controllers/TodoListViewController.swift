@@ -8,6 +8,8 @@
 import UIKit
 
 class TodoListViewController: UIViewController {
+    
+    private let coreDataManager = CoreDataManager.shared
 
     override func loadView() {
         let mainView = TodoListView()
@@ -31,18 +33,19 @@ class TodoListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        print("addButton 눌렀다.")
+        coreDataManager.create()
     }
 } 
 
 extension TodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return coreDataManager.getTasks().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.identifier, for: indexPath) as? TodoListCell else { return UITableViewCell() }
-        cell.mainLabel.text = "헤헤헤 화이팅"
+        let tasks = coreDataManager.getTasks()
+        cell.mainLabel.text = tasks[indexPath.row].title
         return cell
     }
 }
