@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: HomeViewDelegete {
+extension HomeViewController: HomeViewDelegate {
     func showTodoListButtonTapped() {
         let moveVC = TodoListViewController()
         moveVC.modalPresentationStyle = .fullScreen

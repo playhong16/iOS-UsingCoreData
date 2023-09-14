@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol HomeViewDelegete: AnyObject {
+protocol HomeViewDelegate: AnyObject {
     func showTodoListButtonTapped()
 }
 
@@ -18,7 +18,7 @@ class HomeView: UIView {
     let completionButtonTitle = "완료한일 보기"
     let profileButtonTitle = "프로필 보기"
     
-    weak var delegate: HomeViewDelegete?
+    weak var delegate: HomeViewDelegate?
     
     // MARK: - Components
     let mainImageView: UIImageView = {
