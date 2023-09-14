@@ -71,7 +71,7 @@ extension TodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.identifier, for: indexPath) as? TodoListCell else { return UITableViewCell() }
         let tasks = coreDataManager.getTasks()
-        cell.mainLabel.text = tasks[indexPath.row].title
+        cell.task = tasks[indexPath.row]
         return cell
     }
 }

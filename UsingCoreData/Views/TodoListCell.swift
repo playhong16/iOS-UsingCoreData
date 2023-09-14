@@ -10,6 +10,11 @@ import UIKit
 final class TodoListCell: UITableViewCell {
     // MARK: - Static Properties
     static let identifier = "TodoListCell"
+    
+    // MARK: - Properties
+    var task: Task? {
+        didSet { setTaskData() }
+    }
 
     // MARK: - Components
     let mainLabel: UILabel = {
@@ -42,5 +47,10 @@ final class TodoListCell: UITableViewCell {
             mainLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             mainLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
+    }
+    
+    // MARK: - Setup
+    private func setTaskData() {
+        mainLabel.text = self.task?.title
     }
 }
