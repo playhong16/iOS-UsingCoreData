@@ -20,7 +20,7 @@ final class CoreDataManager {
     // MARK: - Life Cycle
     private init() {}
     
-    // MARK: - Task CRUD
+    // MARK: - Task
     func getTasks() -> [Task] {
         var tasks: [Task] = []
         guard let context = self.context else { return tasks }
@@ -45,7 +45,7 @@ final class CoreDataManager {
     }
     
     func update(_ task: Task) {
-        var tasks = getTasks()
+        let tasks = getTasks()
         for oldTask in tasks {
             if oldTask.id == task.id {
                 oldTask.id = task.id
@@ -55,5 +55,12 @@ final class CoreDataManager {
                 oldTask.isCompleted = task.isCompleted
             }
         }
+    }
+    
+    // MARK: - Completion Task
+    func getCompletionTasks() -> [Task] {
+        let tasks = getTasks()
+        let completionTasks = tasks.filter { $0.isCompleted == true }
+        return completionTasks
     }
 }

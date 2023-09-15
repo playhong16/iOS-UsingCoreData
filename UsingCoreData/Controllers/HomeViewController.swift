@@ -43,7 +43,10 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func showCompletionTodoListButtonTapped() {
-        
+        let moveVC = CompletionTodoListViewController()
+        let naviVC = UINavigationController(rootViewController: moveVC)
+        naviVC.modalPresentationStyle = .fullScreen
+        present(naviVC, animated: true)
     }
     
     func showProfileButtonTapped() {

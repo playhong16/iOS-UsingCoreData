@@ -25,9 +25,6 @@ final class TodoListViewController: UIViewController {
         setNavigationBarItem()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
     deinit {
         print("TodoListView Controller 사라집니다~~")
     }

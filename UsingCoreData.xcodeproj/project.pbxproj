@@ -22,6 +22,7 @@
 		055A8FEE2AB2D976001BDF87 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FEC2AB2D976001BDF87 /* Task+CoreDataClass.swift */; };
 		055A8FEF2AB2D976001BDF87 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FED2AB2D976001BDF87 /* Task+CoreDataProperties.swift */; };
 		055A8FF32AB2DD27001BDF87 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FF22AB2DD27001BDF87 /* CoreDataManager.swift */; };
+		055A8FF72AB46C91001BDF87 /* CompletionTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FF62AB46C91001BDF87 /* CompletionTodoListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		055A8FEC2AB2D976001BDF87 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		055A8FED2AB2D976001BDF87 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		055A8FF22AB2DD27001BDF87 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		055A8FF62AB46C91001BDF87 /* CompletionTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionTodoListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			children = (
 				055A8FC72AB2011A001BDF87 /* HomeViewController.swift */,
 				055A8FE12AB2A983001BDF87 /* TodoListViewController.swift */,
+				055A8FF62AB46C91001BDF87 /* CompletionTodoListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				055A8FC42AB2011A001BDF87 /* AppDelegate.swift in Sources */,
 				055A8FE42AB2ABC1001BDF87 /* UIView+Extension.swift in Sources */,
 				055A8FC62AB2011A001BDF87 /* SceneDelegate.swift in Sources */,
+				055A8FF72AB46C91001BDF87 /* CompletionTodoListViewController.swift in Sources */,
 				055A8FDE2AB207FC001BDF87 /* UIImageView+Extension.swift in Sources */,
 				055A8FF32AB2DD27001BDF87 /* CoreDataManager.swift in Sources */,
 				055A8FE02AB2A84A001BDF87 /* TodoListView.swift in Sources */,
