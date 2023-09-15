@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol TodoListCellDelegate: AnyObject {
+    func checkBoxButtonTapped(task: Task)
+}
+
 final class TodoListCell: UITableViewCell {
-    // MARK: - Static Properties
+    // MARK: - Type Properties
     static let identifier = "TodoListCell"
     
     // MARK: - Properties
+    weak var delegate: TodoListCellDelegate?
     var task: Task? {
         didSet { setTaskData() }
     }
@@ -80,5 +85,6 @@ final class TodoListCell: UITableViewCell {
         guard let task = self.task else { return }
         task.isCompleted.toggle()
         task.isCompleted ? checkBoxButton.setImage(checkBoxTappedImage, for: .normal) : checkBoxButton.setImage(checkBoxImage, for: .normal)
+        delegate?.checkBoxButtonTapped(task: task)
     }
 }

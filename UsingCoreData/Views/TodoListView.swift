@@ -8,7 +8,6 @@
 import UIKit
 
 final class TodoListView: UIView {
-    
     // MARK: - Components
     let tableView: UITableView = {
         let tv = UITableView()
