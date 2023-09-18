@@ -7,16 +7,20 @@
 
 import UIKit
 
-class ProfileView: UIView {
+final class ProfileView: UIView {
     
-    let statusBarView: UIView = {
+    // MARK: - Constants
+    private let countLabelFontSize: CGFloat = 20
+    
+    // MARK: - Components
+    private let statusBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .clear
         return view
     }()
 
-    let userNameLabel: UILabel = {
+    private let userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "userName"
@@ -24,7 +28,7 @@ class ProfileView: UIView {
         return label
     }()
     
-    let rightBarButton: UIButton = {
+    private let rightBarButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
@@ -33,7 +37,7 @@ class ProfileView: UIView {
         return button
     }()
     
-    let userImageView: UIImageView = {
+    private let userImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "userPic")
@@ -41,37 +45,113 @@ class ProfileView: UIView {
         return iv
     }()
     
-    let countLabel: UILabel = {
+    // MARK: - posts
+    private lazy var postsCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: countLabelFontSize)
+        label.text = "0"
+        label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
     
-    let postsLabel: UILabel = {
+    private let postsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "post"
+        label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
     
-    let followersLabel: UILabel = {
+    private lazy var postsStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [postsCountLabel, postsLabel])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fillEqually
+        sv.alignment = .fill
+        sv.spacing = 3
+        return sv
+    }()
+    
+    // MARK: - followers
+    private lazy var followersCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: countLabelFontSize)
+        label.text = "0"
+        label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
     
-    let followingLabel: UILabel = {
+    private let followersLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "follower"
+        label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
     
-    let followingButton: UIButton = {
+    private lazy var followersStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [followersCountLabel, followersLabel])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fillEqually
+        sv.alignment = .fill
+        sv.spacing = 3
+        return sv
+    }()
+    
+    // MARK: - following
+    private lazy var followingCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: countLabelFontSize)
+        label.text = "0"
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let followingLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "following"
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var followingStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [followingCountLabel, followingLabel])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fillEqually
+        sv.alignment = .fill
+        sv.spacing = 3
+        return sv
+    }()
+    
+    private lazy var userFollowInfo: UIStackView = {
+        let sv  = UIStackView(arrangedSubviews: [postsStackView, followersStackView, followingStackView])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .horizontal
+        sv.distribution = .fillEqually
+        sv.alignment = .fill
+        sv.spacing = 15
+        return sv
+    }()
+    
+    private let followingButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let messageButton: UIButton = {
+    private let messageButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -106,6 +186,7 @@ class ProfileView: UIView {
         statusBarView.addSubview(userNameLabel)
         statusBarView.addSubview(rightBarButton)
         self.addSubview(userImageView)
+        self.addSubview(userFollowInfo)
     }
     
     // MARK: - Constraints
@@ -114,7 +195,7 @@ class ProfileView: UIView {
             statusBarView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             statusBarView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             statusBarView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            statusBarView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 14),
+            statusBarView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 16),
             
             userNameLabel.centerXAnchor.constraint(equalTo: statusBarView.centerXAnchor),
             userNameLabel.centerYAnchor.constraint(equalTo: statusBarView.centerYAnchor),
@@ -125,7 +206,11 @@ class ProfileView: UIView {
             userImageView.topAnchor.constraint(equalTo: statusBarView.bottomAnchor, constant: 14),
             userImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             userImageView.widthAnchor.constraint(equalToConstant: 100),
-            userImageView.heightAnchor.constraint(equalToConstant: 100)
+            userImageView.heightAnchor.constraint(equalToConstant: 100),
+            
+//            userFollowInfo.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 28),
+            userFollowInfo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -28),
+            userFollowInfo.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor)
         ])
     }
 }
