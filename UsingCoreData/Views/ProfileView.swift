@@ -33,9 +33,11 @@ class ProfileView: UIView {
         return button
     }()
     
-    let profileImageView: UIImageView = {
+    let userImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "userPic")
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
@@ -93,11 +95,17 @@ class ProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        userImageView.layer.cornerRadius = userImageView.frame.width / 2
+    }
+    
     // MARK: - addSubViews
     private func addSubViews() {
         self.addSubview(statusBarView)
         statusBarView.addSubview(userNameLabel)
         statusBarView.addSubview(rightBarButton)
+        self.addSubview(userImageView)
     }
     
     // MARK: - Constraints
@@ -113,6 +121,11 @@ class ProfileView: UIView {
             
             rightBarButton.trailingAnchor.constraint(equalTo: statusBarView.trailingAnchor, constant: -20),
             rightBarButton.centerYAnchor.constraint(equalTo: statusBarView.centerYAnchor),
+            
+            userImageView.topAnchor.constraint(equalTo: statusBarView.bottomAnchor, constant: 14),
+            userImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
+            userImageView.widthAnchor.constraint(equalToConstant: 100),
+            userImageView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
