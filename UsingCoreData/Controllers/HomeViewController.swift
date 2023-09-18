@@ -50,6 +50,8 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func showProfileButtonTapped() {
-        
+        let moveVC = ProfileViewController()
+        moveVC.modalPresentationStyle = .fullScreen
+        present(moveVC, animated: true)
     }
 }

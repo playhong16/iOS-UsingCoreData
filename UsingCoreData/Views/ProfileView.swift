@@ -9,6 +9,30 @@ import UIKit
 
 class ProfileView: UIView {
     
+    let statusBarView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        return view
+    }()
+
+    let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "userName"
+        label.textColor = .black
+        return label
+    }()
+    
+    let rightBarButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        button.setImage(UIImage(systemName: "line.3.horizontal", withConfiguration: imageConfig), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
     let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -51,22 +75,44 @@ class ProfileView: UIView {
         return button
     }()
     
-    let collectionView: UICollectionView = {
-        let cv = UICollectionView()
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        return cv
-    }()
+//    let collectionView: UICollectionView = {
+//        let cv = UICollectionView()
+//        cv.translatesAutoresizingMaskIntoConstraints = false
+//        return cv
+//    }()
     
     // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
+        addSubViews()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - addSubViews
+    private func addSubViews() {
+        self.addSubview(statusBarView)
+        statusBarView.addSubview(userNameLabel)
+        statusBarView.addSubview(rightBarButton)
+    }
+    
+    // MARK: - Constraints
     private func setConstraints() {
-        
+        NSLayoutConstraint.activate([
+            statusBarView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            statusBarView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            statusBarView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            statusBarView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 14),
+            
+            userNameLabel.centerXAnchor.constraint(equalTo: statusBarView.centerXAnchor),
+            userNameLabel.centerYAnchor.constraint(equalTo: statusBarView.centerYAnchor),
+            
+            rightBarButton.trailingAnchor.constraint(equalTo: statusBarView.trailingAnchor, constant: -20),
+            rightBarButton.centerYAnchor.constraint(equalTo: statusBarView.centerYAnchor),
+        ])
     }
 }
