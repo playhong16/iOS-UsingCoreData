@@ -180,7 +180,7 @@ final class ProfileView: UIView {
         return sv
     }()
     
-    private let followingButton: UIButton = {
+    private let followButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "Follow"), for: .normal)
@@ -199,6 +199,26 @@ final class ProfileView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "More"), for: .normal)
         return button
+    }()
+    
+    private lazy var followAndMessageButton: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [followButton, messageButton])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .horizontal
+        sv.distribution = .fillEqually
+        sv.alignment = .fill
+        sv.spacing = 8
+        return sv
+    }()
+    
+    private lazy var middleBar: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [followAndMessageButton, moreButton])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .horizontal
+        sv.distribution = .fill
+        sv.alignment = .fill
+        sv.spacing = 8
+        return sv
     }()
     
 //    let collectionView: UICollectionView = {
@@ -232,6 +252,7 @@ final class ProfileView: UIView {
         self.addSubview(userImageView)
         self.addSubview(userFollowInfo)
         self.addSubview(userInfo)
+        self.addSubview(middleBar)
     }
     
     // MARK: - Constraints
@@ -257,7 +278,14 @@ final class ProfileView: UIView {
             userFollowInfo.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor),
             
             userInfo.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 14),
-            userInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14)
+            userInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
+            
+            moreButton.widthAnchor.constraint(equalToConstant: 30),
+            moreButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            middleBar.topAnchor.constraint(equalTo: userInfo.bottomAnchor, constant: 14),
+            middleBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
+            middleBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -14),
         ])
     }
 }
