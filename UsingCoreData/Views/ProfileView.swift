@@ -145,15 +145,59 @@ final class ProfileView: UIView {
         return sv
     }()
     
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "르탄이"
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let bioLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "iOS Developer 🍎"
+        label.textColor = .black
+        return label
+    }()
+    
+    private let linkInBioLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "spartacodingclub.kr"
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var userInfo: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [nameLabel, bioLabel, linkInBioLabel])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fill
+        sv.alignment = .fill
+        sv.spacing = 3
+        return sv
+    }()
+    
     private let followingButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "Follow"), for: .normal)
         return button
     }()
     
     private let messageButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "Message"), for: .normal)
+        return button
+    }()
+    
+    private let moreButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "More"), for: .normal)
         return button
     }()
     
@@ -187,6 +231,7 @@ final class ProfileView: UIView {
         statusBarView.addSubview(rightBarButton)
         self.addSubview(userImageView)
         self.addSubview(userFollowInfo)
+        self.addSubview(userInfo)
     }
     
     // MARK: - Constraints
@@ -207,10 +252,12 @@ final class ProfileView: UIView {
             userImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             userImageView.widthAnchor.constraint(equalToConstant: 100),
             userImageView.heightAnchor.constraint(equalToConstant: 100),
-            
-//            userFollowInfo.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 28),
+        
             userFollowInfo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -28),
-            userFollowInfo.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor)
+            userFollowInfo.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor),
+            
+            userInfo.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 14),
+            userInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14)
         ])
     }
 }
