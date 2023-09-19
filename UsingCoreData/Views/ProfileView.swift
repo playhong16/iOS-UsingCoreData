@@ -12,8 +12,10 @@ final class ProfileView: UIView {
     // MARK: - Constants
     private let countLabelFontSize: CGFloat = 20
     
-    // MARK: - Components
-    private let statusBarView: UIView = {
+// MARK: - Components
+    
+    // MARK: - statusBar
+    private let statusBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
@@ -135,6 +137,7 @@ final class ProfileView: UIView {
         return sv
     }()
     
+    // MARK: - UserFollowInfo
     private lazy var userFollowInfo: UIStackView = {
         let sv  = UIStackView(arrangedSubviews: [postsStackView, followersStackView, followingStackView])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -145,6 +148,7 @@ final class ProfileView: UIView {
         return sv
     }()
     
+    // MARK: - userInfo
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -180,6 +184,7 @@ final class ProfileView: UIView {
         return sv
     }()
     
+    // MARK: - middleBar
     private let followButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -221,11 +226,12 @@ final class ProfileView: UIView {
         return sv
     }()
     
-//    let collectionView: UICollectionView = {
-//        let cv = UICollectionView()
-//        cv.translatesAutoresizingMaskIntoConstraints = false
-//        return cv
-//    }()
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
     
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -233,6 +239,7 @@ final class ProfileView: UIView {
         self.backgroundColor = .white
         addSubViews()
         setConstraints()
+        setCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -246,30 +253,31 @@ final class ProfileView: UIView {
     
     // MARK: - addSubViews
     private func addSubViews() {
-        self.addSubview(statusBarView)
-        statusBarView.addSubview(userNameLabel)
-        statusBarView.addSubview(rightBarButton)
+        self.addSubview(statusBar)
+        statusBar.addSubview(userNameLabel)
+        statusBar.addSubview(rightBarButton)
         self.addSubview(userImageView)
         self.addSubview(userFollowInfo)
         self.addSubview(userInfo)
         self.addSubview(middleBar)
+        self.addSubview(collectionView)
     }
     
     // MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            statusBarView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            statusBarView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            statusBarView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            statusBarView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 16),
+            statusBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            statusBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            statusBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            statusBar.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 16),
             
-            userNameLabel.centerXAnchor.constraint(equalTo: statusBarView.centerXAnchor),
-            userNameLabel.centerYAnchor.constraint(equalTo: statusBarView.centerYAnchor),
+            userNameLabel.centerXAnchor.constraint(equalTo: statusBar.centerXAnchor),
+            userNameLabel.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
             
-            rightBarButton.trailingAnchor.constraint(equalTo: statusBarView.trailingAnchor, constant: -20),
-            rightBarButton.centerYAnchor.constraint(equalTo: statusBarView.centerYAnchor),
+            rightBarButton.trailingAnchor.constraint(equalTo: statusBar.trailingAnchor, constant: -20),
+            rightBarButton.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
             
-            userImageView.topAnchor.constraint(equalTo: statusBarView.bottomAnchor, constant: 14),
+            userImageView.topAnchor.constraint(equalTo: statusBar.bottomAnchor, constant: 14),
             userImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             userImageView.widthAnchor.constraint(equalToConstant: 100),
             userImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -286,6 +294,16 @@ final class ProfileView: UIView {
             middleBar.topAnchor.constraint(equalTo: userInfo.bottomAnchor, constant: 14),
             middleBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             middleBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -14),
+            
+            collectionView.topAnchor.constraint(equalTo: middleBar.bottomAnchor, constant: 14),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+    }
+    
+    // MARK: - Setup
+    func setCollectionView() {
+        collectionView.register(PictureCell.self, forCellWithReuseIdentifier: PictureCell.identifier)
     }
 }
