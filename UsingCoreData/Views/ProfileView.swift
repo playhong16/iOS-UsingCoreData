@@ -226,11 +226,29 @@ final class ProfileView: UIView {
         return sv
     }()
     
-    private let divider: UIImageView = {
+    // MARK: - navGallery
+    private let navGalleryDivider: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "Divider")
         return iv
+    }()
+    
+    private let navGalleryView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var navGallery: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [navGalleryDivider, navGalleryView])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fill
+        sv.alignment = .fill
+        sv.spacing = 0
+        return sv
     }()
     
     private let gridButton: UIButton = {
@@ -257,16 +275,7 @@ final class ProfileView: UIView {
         return sv
     }()
     
-    lazy var navGallery: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [divider, grid])
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.axis = .vertical
-        sv.distribution = .fill
-        sv.alignment = .leading
-        sv.spacing = 0
-        return sv
-    }()
-    
+    // MARK: - collectionView
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: collectionViewCellSize, height: collectionViewCellSize)
@@ -277,6 +286,7 @@ final class ProfileView: UIView {
         return cv
     }()
     
+    // MARK: - tabBar
     private let tabBarDivider: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -296,7 +306,7 @@ final class ProfileView: UIView {
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.distribution = .fill
-        sv.alignment = .leading
+        sv.alignment = .fill
         sv.spacing = 0
         return sv
     }()
@@ -304,7 +314,9 @@ final class ProfileView: UIView {
     private let profileButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        button.setImage(UIImage(systemName: "person.fill", withConfiguration: imageConfig), for: .normal)
+        button.tintColor = .black
         return button
     }()
     
@@ -336,6 +348,7 @@ final class ProfileView: UIView {
         self.addSubview(userInfo)
         self.addSubview(middleBar)
         self.addSubview(navGallery)
+        navGallery.addSubview(grid)
         self.addSubview(collectionView)
         self.addSubview(tabBar)
         tabBar.addSubview(profileButton)
@@ -374,15 +387,15 @@ final class ProfileView: UIView {
             middleBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             middleBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -14),
             
-            divider.widthAnchor.constraint(equalTo: self.widthAnchor),
-            divider.heightAnchor.constraint(equalToConstant: 2),
-            
-            gridButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3),
-            
             navGallery.topAnchor.constraint(equalTo: middleBar.bottomAnchor, constant: 14),
             navGallery.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             navGallery.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             navGallery.heightAnchor.constraint(equalToConstant: barHeight),
+            
+            grid.topAnchor.constraint(equalTo: navGallery.topAnchor),
+            grid.leadingAnchor.constraint(equalTo: navGallery.leadingAnchor),
+            grid.bottomAnchor.constraint(equalTo: navGallery.bottomAnchor),
+            grid.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3),
             
             collectionView.topAnchor.constraint(equalTo: navGallery.bottomAnchor, constant: 2),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
