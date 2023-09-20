@@ -13,45 +13,54 @@ final class CoreDataManager {
     static let shared = CoreDataManager()
     
     // MARK: - Properties
-    private let entityName = "Task"
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    private lazy var context = appDelegate?.persistentContainer.viewContext
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // MARK: - Life Cycle
     private init() {}
     
     // MARK: - Task
     func getTasks() -> [Task] {
-        var tasks: [Task] = []
-        guard let context = self.context else { return tasks }
-        let request = NSFetchRequest<NSManagedObject>(entityName: self.entityName)
-        if let fetchedTasks = try! context.fetch(request) as? [Task] {
-            tasks = fetchedTasks
+        do {
+            let tasks = try context.fetch(Task.fetchRequest())
+            return tasks
+        } catch {
+            // error
         }
-        return tasks
+        return []
     }
     
     func create(task title: String) {
-        guard let context = self.context,
-              let entity = NSEntityDescription.entity(forEntityName: self.entityName, in: context) else { return }
-        if let task = NSManagedObject(entity: entity, insertInto: context) as? Task {
-            task.id = String(getTasks().count)
-            task.title = title
-            task.createDate = Date()
-            task.modifyDate = nil
-            task.isCompleted = false
-            appDelegate?.saveContext()
+        let newTask = Task(context: context)
+        let id = getTasks().count
+        newTask.id = String(id)
+        newTask.title = title
+        newTask.createDate = Date()
+        newTask.modifyDate = nil
+        newTask.isCompleted = false
+        do {
+            try context.save()
+        } catch {
+            // error
         }
     }
     
-    func update(_ task: Task) {
-        guard let id = task.id else { return }
-        let request = NSFetchRequest<NSManagedObject>(entityName: self.entityName)
-        request.predicate = NSPredicate(format: "id = %@", id as CVarArg)
-        let tasks = getTasks()
-        var oldTask = tasks.first
-        oldTask = task
-        appDelegate?.saveContext()
+    func delete(task: Task) {
+        context.delete(task)
+        do {
+            try context.save()
+        } catch {
+            // error
+        }
+    }
+    
+    func update(_ task: Task, updateTitle: String) {
+        task.title = updateTitle
+        task.modifyDate = Date()
+        do {
+            try context.save()
+        } catch {
+            // error
+        }
     }
     
     // MARK: - Completion Task
