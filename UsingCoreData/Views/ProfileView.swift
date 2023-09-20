@@ -277,15 +277,22 @@ final class ProfileView: UIView {
         return cv
     }()
     
-    private let profileButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "Grid"), for: .normal)
-        return button
+    private let tabBarDivider: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "Divider")
+        return iv
     }()
     
-    lazy var tabBar: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [divider, profileButton])
+    private let tabBarView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var tabBar: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [tabBarDivider, tabBarView])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.distribution = .fill
@@ -294,6 +301,12 @@ final class ProfileView: UIView {
         return sv
     }()
     
+    private let profileButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        return button
+    }()
     
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -325,15 +338,17 @@ final class ProfileView: UIView {
         self.addSubview(navGallery)
         self.addSubview(collectionView)
         self.addSubview(tabBar)
+        tabBar.addSubview(profileButton)
     }
     
     // MARK: - Constraints
     private func setConstraints() {
+        let barHeight = UIScreen.main.bounds.height / 16
         NSLayoutConstraint.activate([
             statusBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             statusBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             statusBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            statusBar.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 16),
+            statusBar.heightAnchor.constraint(equalToConstant: barHeight),
             
             userNameLabel.centerXAnchor.constraint(equalTo: statusBar.centerXAnchor),
             userNameLabel.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
@@ -367,12 +382,20 @@ final class ProfileView: UIView {
             navGallery.topAnchor.constraint(equalTo: middleBar.bottomAnchor, constant: 14),
             navGallery.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             navGallery.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            navGallery.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 16),
+            navGallery.heightAnchor.constraint(equalToConstant: barHeight),
             
             collectionView.topAnchor.constraint(equalTo: navGallery.bottomAnchor, constant: 2),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            tabBar.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 2),
+            tabBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tabBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tabBar.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            tabBar.heightAnchor.constraint(equalToConstant: barHeight),
+            
+            profileButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
+            profileButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor)
         ])
     }
     
