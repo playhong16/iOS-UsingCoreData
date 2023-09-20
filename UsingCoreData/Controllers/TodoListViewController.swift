@@ -69,6 +69,7 @@ extension TodoListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.identifier, for: indexPath) as? TodoListCell else { return UITableViewCell() }
         let tasks = coreDataManager.getTasks()
         cell.task = tasks[indexPath.row]
+        cell.delegate = self
         return cell
     }
 }

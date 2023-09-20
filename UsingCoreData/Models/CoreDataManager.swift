@@ -24,7 +24,7 @@ final class CoreDataManager {
     func getTasks() -> [Task] {
         var tasks: [Task] = []
         guard let context = self.context else { return tasks }
-        let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        let request = NSFetchRequest<NSManagedObject>(entityName: self.entityName)
         if let fetchedTasks = try! context.fetch(request) as? [Task] {
             tasks = fetchedTasks
         }
@@ -33,7 +33,7 @@ final class CoreDataManager {
     
     func create(task title: String) {
         guard let context = self.context,
-              let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { return }
+              let entity = NSEntityDescription.entity(forEntityName: self.entityName, in: context) else { return }
         if let task = NSManagedObject(entity: entity, insertInto: context) as? Task {
             task.id = String(getTasks().count)
             task.title = title
@@ -45,16 +45,13 @@ final class CoreDataManager {
     }
     
     func update(_ task: Task) {
+        guard let id = task.id else { return }
+        let request = NSFetchRequest<NSManagedObject>(entityName: self.entityName)
+        request.predicate = NSPredicate(format: "id = %@", id as CVarArg)
         let tasks = getTasks()
-        for oldTask in tasks {
-            if oldTask.id == task.id {
-                oldTask.id = task.id
-                oldTask.title = task.title
-                oldTask.createDate = task.createDate
-                oldTask.modifyDate = task.modifyDate
-                oldTask.isCompleted = task.isCompleted
-            }
-        }
+        var oldTask = tasks.first
+        oldTask = task
+        appDelegate?.saveContext()
     }
     
     // MARK: - Completion Task

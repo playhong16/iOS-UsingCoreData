@@ -54,6 +54,10 @@ final class TodoListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        mainLabel.strikethrough(from: self.task?.title, at: 0)
+    }
+    
     // MARK: - addSubViews
     private func addSubViews() {
         contentView.addSubview(mainLabel)
@@ -76,15 +80,30 @@ final class TodoListCell: UITableViewCell {
     // MARK: - Setup
     private func setTaskData() {
         guard let task = self.task else { return }
-        task.isCompleted ? checkBoxButton.setImage(checkBoxTappedImage, for: .normal) : checkBoxButton.setImage(checkBoxImage, for: .normal)
-        mainLabel.text = self.task?.title
+        mainLabel.text = task.title
+        if task.isCompleted == true {
+            checkBoxButton.setImage(checkBoxTappedImage, for: .normal)
+            mainLabel.strikethrough(from: task.title, at: task.title?.count)
+        }
+        
+        if task.isCompleted == false {
+            checkBoxButton.setImage(checkBoxImage, for: .normal)
+            mainLabel.strikethrough(from: task.title, at: 0)
+        }
     }
     
     // MARK: - Actions
     @objc func checkBoxButtonTapped() {
         guard let task = self.task else { return }
         task.isCompleted.toggle()
-        task.isCompleted ? checkBoxButton.setImage(checkBoxTappedImage, for: .normal) : checkBoxButton.setImage(checkBoxImage, for: .normal)
+        if task.isCompleted == true {
+            checkBoxButton.setImage(checkBoxTappedImage, for: .normal)
+            mainLabel.strikethrough(from: task.title, at: task.title?.count)
+        }
+        if task.isCompleted == false {
+            checkBoxButton.setImage(checkBoxImage, for: .normal)
+            mainLabel.strikethrough(from: task.title, at: 0)
+        }
         delegate?.checkBoxButtonTapped(task: task)
     }
 }
