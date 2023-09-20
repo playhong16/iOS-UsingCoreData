@@ -35,8 +35,8 @@ final class TodoListViewController: UIViewController {
         navigationItem.rightBarButtonItem = addButton
     }
     
-    // MARK: - Show
-    private func showAlert(title: String, actionTitile: String, completionHandler: @escaping (String) -> Void) {
+    // MARK: - Show Alert
+    private func showAlert(title: String?, actionTitile: String?, placeholder: String?, completionHandler: @escaping (String) -> Void) {
         let alert = UIAlertController(title: title, message: "새로운 할 일을 입력하세요.", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let add = UIAlertAction(title: actionTitile, style: .default) { _ in
@@ -45,18 +45,19 @@ final class TodoListViewController: UIViewController {
             }
         }
         alert.addTextField() { textField in
-            textField.placeholder = "할 일을 입력해주세요."
+            textField.placeholder = placeholder
         }
         alert.addAction(cancel)
         alert.addAction(add)
         present(alert, animated: true)
     }
     
-    private func showSheet(edit task: Task) {
-        let sheet = UIAlertController(title: "편집하기", message: nil, preferredStyle: .actionSheet)
+    // MARK: - Show EditActionSheet
+    private func showEditActionSheet(edit task: Task) {
+        let sheet = UIAlertController(title: "Edit", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let add = UIAlertAction(title: "수정", style: .default) { [weak self] _ in
-            self?.showAlert(title: "할 일 수정하기", actionTitile: "수정") { text in
+        let update = UIAlertAction(title: "수정", style: .default) { [weak self] _ in
+            self?.showAlert(title: "할 일 수정하기", actionTitile: "수정", placeholder: task.title) { text in
                 self?.coreDataManager.update(task, updateTitle: text)
                 self?.mainView.tableView.reloadData()
             }
@@ -66,14 +67,14 @@ final class TodoListViewController: UIViewController {
             self?.mainView.tableView.reloadData()
         }
         sheet.addAction(cancel)
-        sheet.addAction(add)
+        sheet.addAction(update)
         sheet.addAction(delete)
         present(sheet, animated: true)
     }
     
     // MARK: - Actions
     @objc private func addButtonTapped() {
-        showAlert(title: "새로운 할 일", actionTitile: "추가") { text in
+        showAlert(title: "새로운 할 일", actionTitile: "추가", placeholder: "할 일을 입력하세요.") { text in
             self.coreDataManager.create(task: text)
             self.mainView.tableView.reloadData()
         }
@@ -98,7 +99,7 @@ extension TodoListViewController: UITableViewDataSource {
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = coreDataManager.getTasks()[indexPath.row]
-        showSheet(edit: task)
+        showEditActionSheet(edit: task)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50

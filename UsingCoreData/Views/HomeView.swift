@@ -27,7 +27,7 @@ final class HomeView: UIView {
     private let completionButtonTitle = "완료한일 보기"
     private let profileButtonTitle = "프로필 보기"
     
-    // MARK: - Components
+// MARK: - Components
     private let mainImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false

@@ -26,6 +26,7 @@ final class ProfileView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "최홍식짱짱"
         label.textColor = .black
+        label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
     private let rightBarButton: UIButton = {

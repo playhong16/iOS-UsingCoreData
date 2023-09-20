@@ -29,7 +29,7 @@ final class CoreDataManager {
         return []
     }
     
-    func create(task title: String) {
+    func create(task title: String?) {
         let newTask = Task(context: context)
         let id = getTasks().count
         newTask.id = String(id)
@@ -53,7 +53,7 @@ final class CoreDataManager {
         }
     }
     
-    func update(_ task: Task, updateTitle: String) {
+    func update(_ task: Task, updateTitle: String?) {
         task.title = updateTitle
         task.modifyDate = Date()
         do {
