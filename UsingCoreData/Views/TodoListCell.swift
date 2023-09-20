@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TodoListCellDelegate: AnyObject {
-    func checkBoxButtonTapped(task: Task)
+    func checkBoxButtonTapped(task: Task, isCompleted: Bool)
 }
 
 final class TodoListCell: UITableViewCell {
@@ -101,6 +101,6 @@ final class TodoListCell: UITableViewCell {
             checkBoxButton.setImage(checkBoxImage, for: .normal)
             mainLabel.strikethrough(from: task.title, at: 0)
         }
-        delegate?.checkBoxButtonTapped(task: task)
+        delegate?.checkBoxButtonTapped(task: task, isCompleted: task.isCompleted)
     }
 }

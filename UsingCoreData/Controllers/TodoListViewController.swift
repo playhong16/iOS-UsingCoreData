@@ -108,8 +108,8 @@ extension TodoListViewController: UITableViewDelegate {
 
 // MARK: - TodoListCell Delegate
 extension TodoListViewController: TodoListCellDelegate {
-    func checkBoxButtonTapped(task: Task) {
-//        coreDataManager.update(task)
+    func checkBoxButtonTapped(task: Task, isCompleted: Bool) {
+        coreDataManager.update(task, isCompleted: isCompleted)
     }
 }
 

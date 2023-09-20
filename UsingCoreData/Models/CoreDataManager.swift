@@ -44,6 +44,16 @@ final class CoreDataManager {
         }
     }
     
+    func update(_ task: Task, updateTitle: String?) {
+        task.title = updateTitle
+        task.modifyDate = Date()
+        do {
+            try context.save()
+        } catch {
+            // error
+        }
+    }
+    
     func delete(task: Task) {
         context.delete(task)
         do {
@@ -53,9 +63,8 @@ final class CoreDataManager {
         }
     }
     
-    func update(_ task: Task, updateTitle: String?) {
-        task.title = updateTitle
-        task.modifyDate = Date()
+    func update(_ task: Task, isCompleted: Bool) {
+        task.isCompleted = isCompleted
         do {
             try context.save()
         } catch {
