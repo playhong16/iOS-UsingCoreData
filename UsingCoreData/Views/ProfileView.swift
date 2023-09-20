@@ -11,9 +11,9 @@ final class ProfileView: UIView {
     
     // MARK: - Constants
     private let countLabelFontSize: CGFloat = 20
+    private let collectionViewCellSize: CGFloat = (UIScreen.main.bounds.width - 4) / 3
     
 // MARK: - Components
-    
     // MARK: - statusBar
     private let statusBar: UIView = {
         let view = UIView()
@@ -226,12 +226,74 @@ final class ProfileView: UIView {
         return sv
     }()
     
-    let collectionView: UICollectionView = {
+    private let divider: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "Divider")
+        return iv
+    }()
+    
+    private let gridButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "Grid"), for: .normal)
+        return button
+    }()
+    
+    private let underLine: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "Section indicator")
+        return iv
+    }()
+    
+    private lazy var grid: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [gridButton, underLine])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fill
+        sv.alignment = .fill
+        sv.spacing = 0
+        return sv
+    }()
+    
+    lazy var navGallery: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [divider, grid])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fill
+        sv.alignment = .leading
+        sv.spacing = 0
+        return sv
+    }()
+    
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: collectionViewCellSize, height: collectionViewCellSize)
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 2
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
+    
+    private let profileButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "Grid"), for: .normal)
+        return button
+    }()
+    
+    lazy var tabBar: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [divider, profileButton])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fill
+        sv.alignment = .leading
+        sv.spacing = 0
+        return sv
+    }()
+    
     
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -260,7 +322,9 @@ final class ProfileView: UIView {
         self.addSubview(userFollowInfo)
         self.addSubview(userInfo)
         self.addSubview(middleBar)
+        self.addSubview(navGallery)
         self.addSubview(collectionView)
+        self.addSubview(tabBar)
     }
     
     // MARK: - Constraints
@@ -277,7 +341,7 @@ final class ProfileView: UIView {
             rightBarButton.trailingAnchor.constraint(equalTo: statusBar.trailingAnchor, constant: -20),
             rightBarButton.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
             
-            userImageView.topAnchor.constraint(equalTo: statusBar.bottomAnchor, constant: 14),
+            userImageView.topAnchor.constraint(equalTo: statusBar.bottomAnchor),
             userImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             userImageView.widthAnchor.constraint(equalToConstant: 100),
             userImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -295,10 +359,20 @@ final class ProfileView: UIView {
             middleBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             middleBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -14),
             
-            collectionView.topAnchor.constraint(equalTo: middleBar.bottomAnchor, constant: 14),
+            divider.widthAnchor.constraint(equalTo: self.widthAnchor),
+            divider.heightAnchor.constraint(equalToConstant: 2),
+            
+            gridButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3),
+            
+            navGallery.topAnchor.constraint(equalTo: middleBar.bottomAnchor, constant: 14),
+            navGallery.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            navGallery.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            navGallery.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 16),
+            
+            collectionView.topAnchor.constraint(equalTo: navGallery.bottomAnchor, constant: 2),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
     
