@@ -33,7 +33,6 @@ final class HomeView: UIView {
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
-    
     lazy var showTodoListButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +41,6 @@ final class HomeView: UIView {
         button.addTarget(self, action: #selector(showTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
-    
     lazy var showCompletionTodoListButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +49,6 @@ final class HomeView: UIView {
         button.addTarget(self, action: #selector(showCompletionTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
-    
     lazy var showProfileButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -68,16 +65,13 @@ final class HomeView: UIView {
         setConstraints()
         configure()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func updateConstraints() {
         setConstraints()
         super.updateConstraints()
     }
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
@@ -98,17 +92,14 @@ final class HomeView: UIView {
             mainImageView.heightAnchor.constraint(equalToConstant: 200),
             mainImageView.widthAnchor.constraint(equalToConstant: 250)
         ])
-        
         NSLayoutConstraint.activate([
             showTodoListButton.topAnchor.constraint(equalTo: self.mainImageView.bottomAnchor, constant: 40),
             showTodoListButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
-        
         NSLayoutConstraint.activate([
             showCompletionTodoListButton.topAnchor.constraint(equalTo: self.showTodoListButton.bottomAnchor, constant: 40),
             showCompletionTodoListButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
-        
         NSLayoutConstraint.activate([
             showProfileButton.topAnchor.constraint(equalTo: self.showCompletionTodoListButton.bottomAnchor, constant: 40),
             showProfileButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -119,7 +110,6 @@ final class HomeView: UIView {
     private func configure() {
         self.backgroundColor = .white
     }
-    
     private func configureMainImageView(url: URL?) {
         guard let imageUrl = url else { return }
         mainImageView.loadImage(url: imageUrl)
@@ -129,11 +119,9 @@ final class HomeView: UIView {
     @objc func showTodoListButtonTapped() {
         delegate?.showTodoListButtonTapped()
     }
-    
     @objc func showCompletionTodoListButtonTapped() {
         delegate?.showCompletionTodoListButtonTapped()
     }
-    
     @objc func showProfileButtonTapped() {
         delegate?.showProfileButtonTapped()
     }

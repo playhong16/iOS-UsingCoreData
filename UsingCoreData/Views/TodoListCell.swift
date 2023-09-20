@@ -53,7 +53,6 @@ final class TodoListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func prepareForReuse() {
         mainLabel.strikethrough(from: self.task?.title, at: 0)
     }
@@ -85,7 +84,6 @@ final class TodoListCell: UITableViewCell {
             checkBoxButton.setImage(checkBoxTappedImage, for: .normal)
             mainLabel.strikethrough(from: task.title, at: task.title?.count)
         }
-        
         if task.isCompleted == false {
             checkBoxButton.setImage(checkBoxImage, for: .normal)
             mainLabel.strikethrough(from: task.title, at: 0)

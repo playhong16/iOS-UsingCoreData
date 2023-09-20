@@ -15,7 +15,6 @@ class ProfileViewController: UIViewController {
         super.loadView()
         self.view = mainView
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.collectionView.dataSource = self
@@ -27,7 +26,6 @@ extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 7
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: PictureCell.identifier, for: indexPath) as? PictureCell else { return UICollectionViewCell() }
         return cell

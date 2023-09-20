@@ -16,14 +16,12 @@ class CompletionTodoListViewController: UIViewController {
     override func loadView() {
         self.view = mainView
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "CompletionTodoList"
         mainView.tableView.dataSource = self
         mainView.tableView.delegate = self
     }
-    
     deinit {
         print("CompletionTodoListView Controller 사라집니다~~")
     }
@@ -34,7 +32,6 @@ extension CompletionTodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager.getCompletionTasks().count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.identifier, for: indexPath) as? TodoListCell else { return UITableViewCell() }
         let tasks = coreDataManager.getCompletionTasks()

@@ -16,7 +16,6 @@ final class TodoListViewController: UIViewController {
     override func loadView() {
         self.view = mainView
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "TodoList"
@@ -24,7 +23,6 @@ final class TodoListViewController: UIViewController {
         mainView.tableView.delegate = self
         setNavigationBarItem()
     }
-    
     deinit {
         print("TodoListView Controller 사라집니다~~")
     }
