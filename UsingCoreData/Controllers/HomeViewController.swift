@@ -17,11 +17,9 @@ final class HomeViewController: UIViewController {
         self.view = mainView
         configureView(mainView)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     deinit {
         print("HomeView Controller 사라집니다~~")
     }

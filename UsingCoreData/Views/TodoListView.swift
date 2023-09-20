@@ -27,12 +27,12 @@ final class TodoListView: UIView {
     }
     
     // MARK: - addSubViews
-    func addSubViews() {
+    private func addSubViews() {
         self.addSubview(tableView)
     }
     
     // MARK: - Constraints
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -42,7 +42,7 @@ final class TodoListView: UIView {
     }
     
     // MARK: - Setup
-    func setTableView() {
+    private func setTableView() {
         tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.identifier)
     }
 }

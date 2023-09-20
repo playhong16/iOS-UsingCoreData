@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PictureCell: UICollectionViewCell {
+final class PictureCell: UICollectionViewCell {
     // MARK: - Type Properties
     static let identifier = "PictureCell"
     

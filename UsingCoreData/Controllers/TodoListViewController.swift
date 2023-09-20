@@ -44,7 +44,9 @@ final class TodoListViewController: UIViewController {
                 completionHandler(text)
             }
         }
-        alert.addTextField()
+        alert.addTextField() { textField in
+            textField.placeholder = "할 일을 입력해주세요."
+        }
         alert.addAction(cancel)
         alert.addAction(add)
         present(alert, animated: true)
@@ -70,7 +72,7 @@ final class TodoListViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @objc func addButtonTapped() {
+    @objc private func addButtonTapped() {
         showAlert(title: "새로운 할 일", actionTitile: "추가") { text in
             self.coreDataManager.create(task: text)
             self.mainView.tableView.reloadData()

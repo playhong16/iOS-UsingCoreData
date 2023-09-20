@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompletionTodoListViewController: UIViewController {
+final class CompletionTodoListViewController: UIViewController {
     // MARK: - Properties
     private let coreDataManager = CoreDataManager.shared
     private let mainView = TodoListView()

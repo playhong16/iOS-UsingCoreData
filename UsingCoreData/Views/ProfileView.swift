@@ -21,15 +21,13 @@ final class ProfileView: UIView {
         view.backgroundColor = .clear
         return view
     }()
-
     private let userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "userName"
+        label.text = "최홍식짱짱"
         label.textColor = .black
         return label
     }()
-    
     private let rightBarButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +36,6 @@ final class ProfileView: UIView {
         button.tintColor = .black
         return button
     }()
-    
     private let userImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +54,6 @@ final class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
     private let postsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -66,8 +62,7 @@ final class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
-    private lazy var postsStackView: UIStackView = {
+    private lazy var posts: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [postsCountLabel, postsLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
@@ -87,7 +82,6 @@ final class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
     private let followersLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -96,8 +90,7 @@ final class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
-    private lazy var followersStackView: UIStackView = {
+    private lazy var followers: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [followersCountLabel, followersLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
@@ -117,7 +110,6 @@ final class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
     private let followingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -126,8 +118,7 @@ final class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
-    private lazy var followingStackView: UIStackView = {
+    private lazy var following: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [followingCountLabel, followingLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
@@ -139,7 +130,7 @@ final class ProfileView: UIView {
     
     // MARK: - UserFollowInfo
     private lazy var userFollowInfo: UIStackView = {
-        let sv  = UIStackView(arrangedSubviews: [postsStackView, followersStackView, followingStackView])
+        let sv  = UIStackView(arrangedSubviews: [posts, followers, following])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.distribution = .fillEqually
@@ -157,7 +148,6 @@ final class ProfileView: UIView {
         label.textColor = .black
         return label
     }()
-    
     private let bioLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -165,7 +155,6 @@ final class ProfileView: UIView {
         label.textColor = .black
         return label
     }()
-    
     private let linkInBioLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -173,7 +162,6 @@ final class ProfileView: UIView {
         label.textColor = .black
         return label
     }()
-    
     lazy var userInfo: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [nameLabel, bioLabel, linkInBioLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -191,21 +179,18 @@ final class ProfileView: UIView {
         button.setImage(UIImage(named: "Follow"), for: .normal)
         return button
     }()
-    
     private let messageButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "Message"), for: .normal)
         return button
     }()
-    
     private let moreButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "More"), for: .normal)
         return button
     }()
-    
     private lazy var followAndMessageButton: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [followButton, messageButton])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -215,7 +200,6 @@ final class ProfileView: UIView {
         sv.spacing = 8
         return sv
     }()
-    
     private lazy var middleBar: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [followAndMessageButton, moreButton])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -233,14 +217,12 @@ final class ProfileView: UIView {
         iv.image = UIImage(named: "Divider")
         return iv
     }()
-    
     private let navGalleryView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         return view
     }()
-    
     private lazy var navGallery: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [navGalleryDivider, navGalleryView])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -250,21 +232,18 @@ final class ProfileView: UIView {
         sv.spacing = 0
         return sv
     }()
-    
     private let gridButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "Grid"), for: .normal)
         return button
     }()
-    
     private let underLine: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "Section indicator")
         return iv
     }()
-    
     private lazy var grid: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [gridButton, underLine])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -283,6 +262,7 @@ final class ProfileView: UIView {
         layout.minimumInteritemSpacing = 2
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(PictureCell.self, forCellWithReuseIdentifier: PictureCell.identifier)
         return cv
     }()
     
@@ -293,14 +273,12 @@ final class ProfileView: UIView {
         iv.image = UIImage(named: "Divider")
         return iv
     }()
-    
     private let tabBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         return view
     }()
-    
     private lazy var tabBar: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [tabBarDivider, tabBarView])
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -310,7 +288,6 @@ final class ProfileView: UIView {
         sv.spacing = 0
         return sv
     }()
-    
     private let profileButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -326,13 +303,10 @@ final class ProfileView: UIView {
         self.backgroundColor = .white
         addSubViews()
         setConstraints()
-        setCollectionView()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
@@ -340,17 +314,20 @@ final class ProfileView: UIView {
     
     // MARK: - addSubViews
     private func addSubViews() {
-        self.addSubview(statusBar)
+        let subViews: [UIView] = [
+            statusBar,
+            userImageView,
+            userFollowInfo,
+            userInfo,
+            middleBar,
+            navGallery,
+            collectionView,
+            tabBar
+        ]
+        self.addSubViews(subViews)
         statusBar.addSubview(userNameLabel)
         statusBar.addSubview(rightBarButton)
-        self.addSubview(userImageView)
-        self.addSubview(userFollowInfo)
-        self.addSubview(userInfo)
-        self.addSubview(middleBar)
-        self.addSubview(navGallery)
         navGallery.addSubview(grid)
-        self.addSubview(collectionView)
-        self.addSubview(tabBar)
         tabBar.addSubview(profileButton)
     }
     
@@ -410,10 +387,5 @@ final class ProfileView: UIView {
             profileButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
             profileButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor)
         ])
-    }
-    
-    // MARK: - Setup
-    func setCollectionView() {
-        collectionView.register(PictureCell.self, forCellWithReuseIdentifier: PictureCell.identifier)
     }
 }

@@ -22,8 +22,8 @@ final class TodoListCell: UITableViewCell {
     }
     
     // MARK: - Constans
-    let checkBoxImage = UIImage(systemName: "square")
-    let checkBoxTappedImage = UIImage(systemName: "checkmark.square")
+    private let checkBoxImage = UIImage(systemName: "square")
+    private let checkBoxTappedImage = UIImage(systemName: "checkmark.square")
 
     // MARK: - Components
     private let mainLabel: UILabel = {
@@ -69,7 +69,6 @@ final class TodoListCell: UITableViewCell {
             mainLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             mainLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
-        
         NSLayoutConstraint.activate([
             checkBoxButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             checkBoxButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
@@ -91,7 +90,7 @@ final class TodoListCell: UITableViewCell {
     }
     
     // MARK: - Actions
-    @objc func checkBoxButtonTapped() {
+    @objc private func checkBoxButtonTapped() {
         guard let task = self.task else { return }
         task.isCompleted.toggle()
         if task.isCompleted == true {

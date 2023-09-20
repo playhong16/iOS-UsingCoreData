@@ -28,12 +28,12 @@ final class HomeView: UIView {
     private let profileButtonTitle = "프로필 보기"
     
     // MARK: - Components
-    let mainImageView: UIImageView = {
+    private let mainImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
-    lazy var showTodoListButton: UIButton = {
+    private lazy var showTodoListButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.todoListButtonTitle, for: .normal)
@@ -41,7 +41,7 @@ final class HomeView: UIView {
         button.addTarget(self, action: #selector(showTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
-    lazy var showCompletionTodoListButton: UIButton = {
+    private lazy var showCompletionTodoListButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.completionButtonTitle, for: .normal)
@@ -49,7 +49,7 @@ final class HomeView: UIView {
         button.addTarget(self, action: #selector(showCompletionTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
-    lazy var showProfileButton: UIButton = {
+    private lazy var showProfileButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.profileButtonTitle, for: .normal)
@@ -116,13 +116,13 @@ final class HomeView: UIView {
     }
     
     // MARK: - Actions
-    @objc func showTodoListButtonTapped() {
+    @objc private func showTodoListButtonTapped() {
         delegate?.showTodoListButtonTapped()
     }
-    @objc func showCompletionTodoListButtonTapped() {
+    @objc private func showCompletionTodoListButtonTapped() {
         delegate?.showCompletionTodoListButtonTapped()
     }
-    @objc func showProfileButtonTapped() {
+    @objc private func showProfileButtonTapped() {
         delegate?.showProfileButtonTapped()
     }
 }
