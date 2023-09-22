@@ -29,9 +29,10 @@ final class TodoListViewController: UIViewController {
     
     // MARK: - Setup
     private func setNavigationBarItem() {
-        let image = UIImage(systemName: "plus")
-        let addButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addButtonTapped))
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonTapped))
+        let cancelButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         navigationController?.navigationBar.tintColor = .systemPink
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = addButton
     }
     
@@ -78,6 +79,10 @@ final class TodoListViewController: UIViewController {
             self.coreDataManager.create(task: text)
             self.mainView.tableView.reloadData()
         }
+    }
+    
+    @objc private func cancelButtonTapped() {
+        dismiss(animated: true)
     }
 } 
 

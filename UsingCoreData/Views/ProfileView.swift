@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol ProfileViewDelegate: AnyObject {
+    func cancelButtonTapped()
+}
+
 final class ProfileView: UIView {
+    
+    weak var delegate: ProfileViewDelegate?
     
     // MARK: - Constants
     private let countLabelFontSize: CGFloat = 20
@@ -29,14 +35,25 @@ final class ProfileView: UIView {
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
+    private let leftBarButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
+        button.setImage(UIImage(systemName: "xmark", withConfiguration: imageConfig), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        return button
+    }()
     private let rightBarButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
         button.setImage(UIImage(systemName: "line.3.horizontal", withConfiguration: imageConfig), for: .normal)
         button.tintColor = .black
         return button
     }()
+    
+    // MARK: - userImage
     private let userImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -326,12 +343,18 @@ final class ProfileView: UIView {
             tabBar
         ]
         self.addSubViews(subViews)
+        statusBar.addSubview(leftBarButton)
         statusBar.addSubview(userNameLabel)
         statusBar.addSubview(rightBarButton)
         navGallery.addSubview(grid)
         tabBar.addSubview(profileButton)
     }
     
+    // MARK: - Actions
+    @objc private func cancelButtonTapped() {
+        delegate?.cancelButtonTapped()
+    }
+
     // MARK: - Constraints
     private func setConstraints() {
         let barHeight = UIScreen.main.bounds.height / 16
@@ -340,6 +363,9 @@ final class ProfileView: UIView {
             statusBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             statusBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             statusBar.heightAnchor.constraint(equalToConstant: barHeight),
+            
+            leftBarButton.leadingAnchor.constraint(equalTo: statusBar.leadingAnchor, constant: 20),
+            leftBarButton.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
             
             userNameLabel.centerXAnchor.constraint(equalTo: statusBar.centerXAnchor),
             userNameLabel.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),

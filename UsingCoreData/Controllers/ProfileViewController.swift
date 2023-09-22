@@ -17,8 +17,8 @@ final class ProfileViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.delegate = self
         mainView.collectionView.dataSource = self
-        mainView.collectionView.delegate = self
     }
 }
 
@@ -32,5 +32,8 @@ extension ProfileViewController: UICollectionViewDataSource {
     }
 }
 
-extension ProfileViewController: UICollectionViewDelegate {
+extension ProfileViewController: ProfileViewDelegate {
+    func cancelButtonTapped() {
+        self.dismiss(animated: true)
+    }
 }
