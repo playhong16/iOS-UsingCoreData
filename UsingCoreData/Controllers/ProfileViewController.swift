@@ -11,6 +11,7 @@ final class ProfileViewController: UIViewController {
     
     private let mainView = ProfileView()
     
+    // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
         self.view = mainView
@@ -35,5 +36,14 @@ extension ProfileViewController: UICollectionViewDataSource {
 extension ProfileViewController: ProfileViewDelegate {
     func cancelButtonTapped() {
         self.dismiss(animated: true)
+    }
+    func addButtonTapped() {
+        print("")
+    }
+    
+    func moveDetailPageActionTapped() {
+        let moveVC = DetailProfileViewController()
+//        moveVC.modalPresentationStyle = .fullScreen
+        self.present(moveVC, animated: true)
     }
 }

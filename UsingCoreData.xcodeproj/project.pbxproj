@@ -27,6 +27,8 @@
 		055A8FFB2AB5EFB6001BDF87 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FFA2AB5EFB6001BDF87 /* ProfileViewController.swift */; };
 		055A8FFD2AB960A5001BDF87 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FFC2AB960A5001BDF87 /* PictureCell.swift */; };
 		055A8FFF2ABAF4C7001BDF87 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A8FFE2ABAF4C7001BDF87 /* UILabel+Extension.swift */; };
+		055A90012ABDA4F5001BDF87 /* DetailProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A90002ABDA4F5001BDF87 /* DetailProfileView.swift */; };
+		055A90032ABDA509001BDF87 /* DetailProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A90022ABDA509001BDF87 /* DetailProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		055A8FFA2AB5EFB6001BDF87 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		055A8FFC2AB960A5001BDF87 /* PictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		055A8FFE2ABAF4C7001BDF87 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		055A90002ABDA4F5001BDF87 /* DetailProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileView.swift; sourceTree = "<group>"; };
+		055A90022ABDA509001BDF87 /* DetailProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 				055A8FE52AB2CBCC001BDF87 /* TodoListCell.swift */,
 				055A8FF82AB5EFA2001BDF87 /* ProfileView.swift */,
 				055A8FFC2AB960A5001BDF87 /* PictureCell.swift */,
+				055A90002ABDA4F5001BDF87 /* DetailProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				055A8FE12AB2A983001BDF87 /* TodoListViewController.swift */,
 				055A8FF62AB46C91001BDF87 /* CompletionTodoListViewController.swift */,
 				055A8FFA2AB5EFB6001BDF87 /* ProfileViewController.swift */,
+				055A90022ABDA509001BDF87 /* DetailProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -216,12 +222,14 @@
 				055A8FC82AB2011A001BDF87 /* HomeViewController.swift in Sources */,
 				055A8FC42AB2011A001BDF87 /* AppDelegate.swift in Sources */,
 				055A8FE42AB2ABC1001BDF87 /* UIView+Extension.swift in Sources */,
+				055A90032ABDA509001BDF87 /* DetailProfileViewController.swift in Sources */,
 				055A8FC62AB2011A001BDF87 /* SceneDelegate.swift in Sources */,
 				055A8FFB2AB5EFB6001BDF87 /* ProfileViewController.swift in Sources */,
 				055A8FF72AB46C91001BDF87 /* CompletionTodoListViewController.swift in Sources */,
 				055A8FFF2ABAF4C7001BDF87 /* UILabel+Extension.swift in Sources */,
 				055A8FF92AB5EFA2001BDF87 /* ProfileView.swift in Sources */,
 				055A8FDE2AB207FC001BDF87 /* UIImageView+Extension.swift in Sources */,
+				055A90012ABDA4F5001BDF87 /* DetailProfileView.swift in Sources */,
 				055A8FF32AB2DD27001BDF87 /* CoreDataManager.swift in Sources */,
 				055A8FE02AB2A84A001BDF87 /* TodoListView.swift in Sources */,
 				055A8FEE2AB2D976001BDF87 /* Task+CoreDataClass.swift in Sources */,
