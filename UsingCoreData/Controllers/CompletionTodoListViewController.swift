@@ -21,9 +21,22 @@ final class CompletionTodoListViewController: UIViewController {
         self.title = "CompletionTodoList"
         mainView.tableView.dataSource = self
         mainView.tableView.delegate = self
+        setNavigationBarItem()
     }
     deinit {
         print("CompletionTodoListView Controller 사라집니다~~")
+    }
+    
+    // MARK: - Setup
+    private func setNavigationBarItem() {
+        let cancelButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(cancelButtonTapped))
+        navigationController?.navigationBar.tintColor = .systemPink
+        navigationItem.leftBarButtonItem = cancelButton
+    }
+    
+    // MARK: - Actions
+    @objc private func cancelButtonTapped() {
+        dismiss(animated: true)
     }
 }
 
