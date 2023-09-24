@@ -16,8 +16,119 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "ProfileView"
-            landmarkType = "3">
+            landmarkName = "menuList"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B708EA2A-C675-4DB4-ADEE-4A84D34710E6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UsingCoreData/Controllers/DetailProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B708EA2A-C675-4DB4-ADEE-4A84D34710E6 - 79f89688c45794cc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UsingCoreData.DetailProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "UsingCoreData"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/UsingCoreData/UsingCoreData/Controllers/DetailProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "B708EA2A-C675-4DB4-ADEE-4A84D34710E6 - 79f89688c45794cc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UsingCoreData.DetailProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "UsingCoreData"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/UsingCoreData/UsingCoreData/Controllers/DetailProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "228">
+               </Location>
+               <Location
+                  uuid = "B708EA2A-C675-4DB4-ADEE-4A84D34710E6 - 79f89688c45794cc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UsingCoreData.DetailProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "UsingCoreData"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/UsingCoreData/UsingCoreData/Controllers/DetailProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6EC7747-1E8A-4E8C-99CB-05464F39C946"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UsingCoreData/Views/DetailProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "setupData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B6EC7747-1E8A-4E8C-99CB-05464F39C946 - 8ad283ab4610d32a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UsingCoreData.DetailProfileView.setupData() -&gt; ()"
+                  moduleName = "UsingCoreData"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/UsingCoreData/UsingCoreData/Views/DetailProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "B6EC7747-1E8A-4E8C-99CB-05464F39C946 - 8ad283ab4610d30b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UsingCoreData.DetailProfileView.setupData() -&gt; ()"
+                  moduleName = "UsingCoreData"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/UsingCoreData/UsingCoreData/Views/DetailProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

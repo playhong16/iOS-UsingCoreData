@@ -8,6 +8,8 @@
 import UIKit
 
 class DetailProfileView: UIView {
+    var viewModel: DetailProfileViewModel!
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,8 +51,9 @@ class DetailProfileView: UIView {
         ])
     }
     
-    func setupData(name: String, age: Int) {
-        nameLabel.text = name
+    func setupData() {
+        guard let age = viewModel.age else { return }
+        nameLabel.text = viewModel.name
         ageLabel.text = String(age)
     }
 }
