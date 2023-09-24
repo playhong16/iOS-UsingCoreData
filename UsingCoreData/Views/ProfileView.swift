@@ -9,6 +9,8 @@ import UIKit
 
 protocol ProfileViewDelegate: AnyObject {
     func cancelButtonTapped()
+    func addButtonTapped()
+    func moveDetailPageActionTapped()
 }
 
 final class ProfileView: UIView {
@@ -44,11 +46,29 @@ final class ProfileView: UIView {
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         return button
     }()
-    private let rightBarButton: UIButton = {
+    private lazy var listButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
         button.setImage(UIImage(systemName: "line.3.horizontal", withConfiguration: imageConfig), for: .normal)
+        button.tintColor = .black
+        button.menu = menuList
+        button.showsMenuAsPrimaryAction = true
+        return button
+    }()
+    private lazy var menuList: UIMenu = {
+        let showDetailAction = UIAction(title: "상페페이지") { [weak self] _ in
+            self?.delegate?.moveDetailPageActionTapped()
+        }
+        let menu = UIMenu(title: "메뉴", children: [showDetailAction])
+        return menu
+    }()
+    private let addButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
+        button.setImage(UIImage(systemName: "plus", withConfiguration: imageConfig), for: .normal)
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         button.tintColor = .black
         return button
     }()
@@ -345,7 +365,7 @@ final class ProfileView: UIView {
         self.addSubViews(subViews)
         statusBar.addSubview(leftBarButton)
         statusBar.addSubview(userNameLabel)
-        statusBar.addSubview(rightBarButton)
+        statusBar.addSubview(listButton)
         navGallery.addSubview(grid)
         tabBar.addSubview(profileButton)
     }
@@ -353,6 +373,10 @@ final class ProfileView: UIView {
     // MARK: - Actions
     @objc private func cancelButtonTapped() {
         delegate?.cancelButtonTapped()
+    }
+    
+    @objc private func addButtonTapped() {
+        delegate?.addButtonTapped()
     }
 
     // MARK: - Constraints
@@ -370,8 +394,8 @@ final class ProfileView: UIView {
             userNameLabel.centerXAnchor.constraint(equalTo: statusBar.centerXAnchor),
             userNameLabel.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
             
-            rightBarButton.trailingAnchor.constraint(equalTo: statusBar.trailingAnchor, constant: -20),
-            rightBarButton.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
+            listButton.trailingAnchor.constraint(equalTo: statusBar.trailingAnchor, constant: -20),
+            listButton.centerYAnchor.constraint(equalTo: statusBar.centerYAnchor),
             
             userImageView.topAnchor.constraint(equalTo: statusBar.bottomAnchor),
             userImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),

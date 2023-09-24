@@ -24,7 +24,7 @@ final class HomeView: UIView {
     
     // MARK: - Constants
     private let todoListButtonTitle = "할일 확인하기"
-    private let completionButtonTitle = "완료한일 보기"
+    private let completionButtonTitle = "완료한 일 보기"
     private let profileButtonTitle = "프로필 보기"
     
 // MARK: - Components
