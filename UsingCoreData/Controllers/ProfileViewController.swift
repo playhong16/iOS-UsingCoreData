@@ -43,7 +43,6 @@ extension ProfileViewController: ProfileViewDelegate {
     
     func moveDetailPageActionTapped() {
         let moveVC = DetailProfileViewController()
-//        moveVC.modalPresentationStyle = .fullScreen
         self.present(moveVC, animated: true)
     }
 }

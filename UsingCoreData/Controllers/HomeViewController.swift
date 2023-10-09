@@ -45,6 +45,11 @@ extension HomeViewController: HomeViewDelegate {
         naviVC.modalPresentationStyle = .fullScreen
         present(naviVC, animated: true)
     }
+    func showRandomCatButtonTapped() {
+        let moveVC = RandomCatViewController()
+        moveVC.modalPresentationStyle = .fullScreen
+        present(moveVC, animated: true)
+    }
     func showProfileButtonTapped() {
         let moveVC = ProfileViewController()
         moveVC.modalPresentationStyle = .fullScreen
