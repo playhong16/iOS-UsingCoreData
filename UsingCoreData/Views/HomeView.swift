@@ -10,6 +10,7 @@ import UIKit
 protocol HomeViewDelegate: AnyObject {
     func showTodoListButtonTapped()
     func showCompletionTodoListButtonTapped()
+    func showRandomCatButtonTapped()
     func showProfileButtonTapped()
 }
 
@@ -25,17 +26,16 @@ final class HomeView: UIView {
     // MARK: - Constants
     private let todoListButtonTitle = "할일 확인하기"
     private let completionButtonTitle = "완료한 일 보기"
+    private let randomCatButtonTitle = "랜덤 고양이 보기"
     private let profileButtonTitle = "프로필 보기"
     
-// MARK: - Components
+    // MARK: - Components
     private let mainImageView: UIImageView = {
         let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     private lazy var showTodoListButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.todoListButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showTodoListButtonTapped), for: .touchUpInside)
@@ -43,15 +43,20 @@ final class HomeView: UIView {
     }()
     private lazy var showCompletionTodoListButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.completionButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showCompletionTodoListButtonTapped), for: .touchUpInside)
         return button
     }()
+    private lazy var showRandomCatButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(self.randomCatButtonTitle, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(showRandomCatButtonTapped), for: .touchUpInside)
+        return button
+    }()
     private lazy var showProfileButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.profileButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showProfileButtonTapped), for: .touchUpInside)
@@ -78,10 +83,11 @@ final class HomeView: UIView {
     
     // MARK: - addSubViews
     private func addSubviews() {
-        self.addSubview(mainImageView)
-        self.addSubview(showTodoListButton)
-        self.addSubview(showCompletionTodoListButton)
-        self.addSubview(showProfileButton)
+        let views: [UIView] = [mainImageView, showTodoListButton, showCompletionTodoListButton, showRandomCatButton, showProfileButton]
+        views.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
+        }
     }
     
     // MARK: - Constraints
@@ -101,7 +107,11 @@ final class HomeView: UIView {
             showCompletionTodoListButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
         NSLayoutConstraint.activate([
-            showProfileButton.topAnchor.constraint(equalTo: self.showCompletionTodoListButton.bottomAnchor, constant: 40),
+            showRandomCatButton.topAnchor.constraint(equalTo: self.showCompletionTodoListButton.bottomAnchor, constant: 40),
+            showRandomCatButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            showProfileButton.topAnchor.constraint(equalTo: self.showRandomCatButton.bottomAnchor, constant: 40),
             showProfileButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
     }
@@ -121,6 +131,9 @@ final class HomeView: UIView {
     }
     @objc private func showCompletionTodoListButtonTapped() {
         delegate?.showCompletionTodoListButtonTapped()
+    }
+    @objc private func showRandomCatButtonTapped() {
+        delegate?.showRandomCatButtonTapped()
     }
     @objc private func showProfileButtonTapped() {
         delegate?.showProfileButtonTapped()
