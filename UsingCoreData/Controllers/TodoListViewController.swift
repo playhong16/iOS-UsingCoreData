@@ -89,23 +89,40 @@ final class TodoListViewController: UIViewController {
 // MARK: - UITableView DataSource
 extension TodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coreDataManager.getTasks().count
+        do {
+            let tasks = try coreDataManager.getTasks()
+            return tasks.count
+        } catch {
+            print("ERROR: Get Tasks Failed")
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.identifier, for: indexPath) as? TodoListCell else { return UITableViewCell() }
-        let tasks = coreDataManager.getTasks()
-        cell.task = tasks[indexPath.row]
-        cell.delegate = self
-        return cell
+        do {
+            let tasks = try coreDataManager.getTasks()
+            cell.task = tasks[indexPath.row]
+            cell.delegate = self
+            return cell
+        } catch {
+            print("ERROR: Get Tasks Failed")
+        }
+        return UITableViewCell()
     }
 }
 
 // MARK: - UITableView Delegate
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = coreDataManager.getTasks()[indexPath.row]
-        showEditActionSheet(edit: task)
+        do {
+            let tasks = try coreDataManager.getTasks()
+            let task = tasks[indexPath.row]
+            showEditActionSheet(edit: task)
+        } catch {
+            print("ERROR: Get Tasks Failed")
+        }
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }

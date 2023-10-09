@@ -8,6 +8,12 @@
 import UIKit
 import CoreData
 
+enum CoreDataError: Error {
+    case createError
+    case updateError
+    case deleteError
+}
+
 final class CoreDataManager {
     // MARK: - Type Properties
     static let shared = CoreDataManager()
@@ -19,24 +25,26 @@ final class CoreDataManager {
     private init() {}
     
     // MARK: - Task
-    func getTasks() -> [Task] {
+    func getTasks() throws -> [Task] {
         do {
             let tasks = try context.fetch(Task.fetchRequest())
             return tasks
         } catch {
-            // error
+            throw CoreDataError.createError
         }
-        return []
     }
     
     func create(task title: String?) {
         let newTask = Task(context: context)
-        let id = getTasks().count
-        newTask.id = String(id)
-        newTask.title = title
-        newTask.createDate = Date()
-        newTask.modifyDate = nil
-        newTask.isCompleted = false
+        do { let id = try getTasks().count
+            newTask.id = String(id)
+            newTask.title = title
+            newTask.createDate = Date()
+            newTask.modifyDate = nil
+            newTask.isCompleted = false
+        } catch {
+            print("error")
+        }
         do {
             try context.save()
         } catch {
@@ -74,8 +82,13 @@ final class CoreDataManager {
     
     // MARK: - Completion Task
     func getCompletionTasks() -> [Task] {
-        let tasks = getTasks()
-        let completionTasks = tasks.filter { $0.isCompleted == true }
-        return completionTasks
+        do {
+            let tasks = try getTasks()
+            let completionTasks = tasks.filter { $0.isCompleted == true }
+            return completionTasks
+        } catch {
+            
+        }
+        return []
     }
 }
