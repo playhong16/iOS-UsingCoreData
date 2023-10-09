@@ -25,7 +25,6 @@ final class ProfileView: UIView {
     // MARK: - statusBar
     private let statusBar: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         return view
     }()
@@ -76,7 +75,6 @@ final class ProfileView: UIView {
     // MARK: - userImage
     private let userImageView: UIImageView = {
         let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "userPic")
         iv.contentMode = .scaleAspectFill
         return iv
@@ -169,7 +167,6 @@ final class ProfileView: UIView {
     // MARK: - UserFollowInfo
     private lazy var userFollowInfo: UIStackView = {
         let sv  = UIStackView(arrangedSubviews: [posts, followers, following])
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.distribution = .fillEqually
         sv.alignment = .fill
@@ -202,7 +199,6 @@ final class ProfileView: UIView {
     }()
     lazy var userInfo: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [nameLabel, bioLabel, linkInBioLabel])
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.distribution = .fill
         sv.alignment = .fill
@@ -240,7 +236,6 @@ final class ProfileView: UIView {
     }()
     private lazy var middleBar: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [followAndMessageButton, moreButton])
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.distribution = .fill
         sv.alignment = .fill
@@ -263,7 +258,6 @@ final class ProfileView: UIView {
     }()
     private lazy var navGallery: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [navGalleryDivider, navGalleryView])
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.distribution = .fill
         sv.alignment = .fill
@@ -299,7 +293,6 @@ final class ProfileView: UIView {
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 2
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(PictureCell.self, forCellWithReuseIdentifier: PictureCell.identifier)
         return cv
     }()
@@ -319,7 +312,6 @@ final class ProfileView: UIView {
     }()
     private lazy var tabBar: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [tabBarDivider, tabBarView])
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.distribution = .fill
         sv.alignment = .fill
@@ -352,7 +344,7 @@ final class ProfileView: UIView {
     
     // MARK: - addSubViews
     private func addSubViews() {
-        let subViews: [UIView] = [
+        let views: [UIView] = [
             statusBar,
             userImageView,
             userFollowInfo,
@@ -362,7 +354,10 @@ final class ProfileView: UIView {
             collectionView,
             tabBar
         ]
-        self.addSubViews(subViews)
+        views.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
+        }
         statusBar.addSubview(leftBarButton)
         statusBar.addSubview(userNameLabel)
         statusBar.addSubview(listButton)

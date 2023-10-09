@@ -27,15 +27,13 @@ final class HomeView: UIView {
     private let completionButtonTitle = "완료한 일 보기"
     private let profileButtonTitle = "프로필 보기"
     
-// MARK: - Components
+    // MARK: - Components
     private let mainImageView: UIImageView = {
         let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     private lazy var showTodoListButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.todoListButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showTodoListButtonTapped), for: .touchUpInside)
@@ -43,7 +41,6 @@ final class HomeView: UIView {
     }()
     private lazy var showCompletionTodoListButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.completionButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showCompletionTodoListButtonTapped), for: .touchUpInside)
@@ -51,7 +48,6 @@ final class HomeView: UIView {
     }()
     private lazy var showProfileButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(self.profileButtonTitle, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showProfileButtonTapped), for: .touchUpInside)
@@ -78,10 +74,11 @@ final class HomeView: UIView {
     
     // MARK: - addSubViews
     private func addSubviews() {
-        self.addSubview(mainImageView)
-        self.addSubview(showTodoListButton)
-        self.addSubview(showCompletionTodoListButton)
-        self.addSubview(showProfileButton)
+        let views: [UIView] = [mainImageView, showTodoListButton, showCompletionTodoListButton, showProfileButton]
+        views.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
+        }
     }
     
     // MARK: - Constraints
